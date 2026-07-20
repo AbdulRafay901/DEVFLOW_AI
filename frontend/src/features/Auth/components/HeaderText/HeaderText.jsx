@@ -2,10 +2,10 @@ import React from 'react'
 import './HeaderText.module.css'
 
 
-const HeaderText = () => {
+const HeaderText = ({text}) => {
   return (
     <h1>
-        Create Your Account
+        {text}
     </h1>
   )
 }

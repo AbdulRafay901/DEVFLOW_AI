@@ -1,10 +1,10 @@
 import React from 'react'
 import './Paragraphtext.module.css'
 
-const Paragraphtext = () => {
+const Paragraphtext = ({text}) => {
   return (
      <p>
-        Start Your 14-day free 
+        {text}
      </p>
   )
 }

@@ -12,9 +12,29 @@
     padding: 25px;
     background-color: var(--bg-card);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    border-radius: 5px;
 }
 .registrationPage .content .text{
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+}
+.registrationPage .content .inputs{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    margin-top: 20px;
+}
+.registrationPage .content .checkboxDual{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+    
+}
+.DualHeading{
+    margin-top: 4px;
+}
+.DualHeading2{
+    margin-top: 30px;
 }
