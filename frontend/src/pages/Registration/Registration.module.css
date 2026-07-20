@@ -1,0 +1,20 @@
+
+.registrationPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.registrationPage .content{
+    width: 300px;
+    text-align: center;
+    padding: 25px;
+    background-color: var(--bg-card);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+.registrationPage .content .text{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
