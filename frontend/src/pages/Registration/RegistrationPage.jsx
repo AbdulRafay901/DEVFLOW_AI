@@ -16,15 +16,15 @@ const RegistrationPage = () => {
       email: '',
       password: '',
       confirmPassword: '',
-      checkbox: ''
+      checkbox: false
   })
 
   const handleChange = async (e) => {
-      const {label, type, value, checked} = e.target
+      const {name, type, value, checked} = e.target
 
       setformData((prev) => ({
             ...prev,
-            [label]: type === "checkbox" ? checked : value,
+            [name]: type === "checkbox" ? checked : value,
       }))
 
 }
@@ -32,8 +32,8 @@ const RegistrationPage = () => {
 
   const formSubmit = async (e) => {
        e.preventDefault()
+
        
-       console.log(formData)
   } 
 
 
@@ -49,24 +49,28 @@ const RegistrationPage = () => {
                      <div className={styles.inputs}>
                            <Input
                                  label='Full name' 
+                                 name='fullName' 
                                  type='text' 
                                  value={formData.fullName} 
                                  onChange={handleChange}
                            />
                            <Input 
                                   label='Email address' 
+                                  name='email' 
                                   type='email'
                                   value={formData.email} 
                                   onChange={handleChange}
                            />
                            <Input 
-                                  label='Password' 
+                                  label='Password'
+                                  name='password' 
                                   type='password'
                                   value={formData.password} 
                                   onChange={handleChange}
                            />
                            <Input 
                                   label='Confirm Password' 
+                                  name='confirmPassword'
                                   type='password'
                                   value={formData.confirmPassword} 
                                   onChange={handleChange}
@@ -75,6 +79,7 @@ const RegistrationPage = () => {
                      </div>
                      <div className={styles.checkboxDual}>
                            <Input 
+                                  name='checkbox'
                                   type='checkbox'
                                   checked={formData.checkbox} 
                                   onChange={handleChange}
