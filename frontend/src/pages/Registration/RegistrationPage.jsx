@@ -7,34 +7,19 @@ import DualHeading from '../../components/Dual_Heading/DualHeading';
 import Buttons from '../../components/Button/Buttons';
 import {Link} from 'react-router-dom'
 import { useState } from 'react';
+import { useForm } from "react-hook-form";
 
 const RegistrationPage = () => {
 
+      const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm();
 
-  const [formData, setformData] = useState({
-      fullName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      checkbox: false
-  })
-
-  const handleChange = async (e) => {
-      const {name, type, value, checked} = e.target
-
-      setformData((prev) => ({
-            ...prev,
-            [name]: type === "checkbox" ? checked : value,
-      }))
-
-}
-
-
-  const formSubmit = async (e) => {
-       e.preventDefault()
-
-       
-  } 
+      const formSubmit = (data) => { 
+        console.log(data)
+      } 
 
 
 
@@ -45,45 +30,38 @@ const RegistrationPage = () => {
                     <HeaderText text='Create your account'/>
                     <Paragraphtext text='Start your 14 day free trial'/>
               </div>
-              <form onSubmit={formSubmit}>
+              <form onSubmit={handleSubmit(formSubmit)}>
                      <div className={styles.inputs}>
                            <Input
-                                 label='Full name' 
-                                 name='fullName' 
-                                 type='text' 
-                                 value={formData.fullName} 
-                                 onChange={handleChange}
+                             label="Full name"
+                             type="text"
+                             placeholder="Enter Full Name"
+                             {...register("fullName")}
                            />
-                           <Input 
-                                  label='Email address' 
-                                  name='email' 
-                                  type='email'
-                                  value={formData.email} 
-                                  onChange={handleChange}
-                           />
-                           <Input 
-                                  label='Password'
-                                  name='password' 
-                                  type='password'
-                                  value={formData.password} 
-                                  onChange={handleChange}
-                           />
-                           <Input 
-                                  label='Confirm Password' 
-                                  name='confirmPassword'
-                                  type='password'
-                                  value={formData.confirmPassword} 
-                                  onChange={handleChange}
 
+                           <Input
+                             label="Email address"
+                             type="email"
+                             placeholder="Enter Email"
+                             {...register("email")}
                            />
-                     </div>
-                     <div className={styles.checkboxDual}>
-                           <Input 
-                                  name='checkbox'
-                                  type='checkbox'
-                                  checked={formData.checkbox} 
-                                  onChange={handleChange}
-                                 
+
+                           <Input
+                             label="Password"
+                             type="password"
+                             placeholder="Enter Password"
+                             {...register("password")}
+                           />
+
+                           <Input
+                             label="Confirm Password"
+                             type="password"
+                             placeholder="Confirm Password"
+                             {...register("confirmPassword")}
+                           />
+                           <Input
+                               type="checkbox"
+                               {...register("checkbox")}
                            />
                            <DualHeading className={styles.DualHeading}   text='I agree to the' dualText='Terms & Conditions' element={<span>Terms & Conditions</span>} />
                      </div>
