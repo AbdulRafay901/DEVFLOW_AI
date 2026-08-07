@@ -8,6 +8,7 @@ import styles from './inputs.module.css'
          <input
               {...props}
          ></input>
+         {error && <p>{error}</p>}
     </div>
   )
 }
