@@ -5,7 +5,7 @@ export const registerSchema = z.object({
     .string()
     .min(3, "Full Name must be at least 3 characters"),
 
-  email: z
+  email: z.string()
     .email("Invalid Email"),
 
   password: z
@@ -15,4 +15,9 @@ export const registerSchema = z.object({
   confirmPassword: z.string(),
 
   checkbox: z.boolean()
-});
+})
+
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });

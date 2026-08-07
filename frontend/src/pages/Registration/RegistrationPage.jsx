@@ -10,8 +10,12 @@ import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from '../../schemas/authSchemas';
+import { useDispatch } from 'react-redux'
+import { create } from '../../features/Auth/authSlice';
 
 const RegistrationPage = () => {
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -22,10 +26,8 @@ const RegistrationPage = () => {
   });
 
   const formSubmit = (data) => {
-    console.log(data)
+       dispatch(create(data))
   }
-
-
 
   return (
     <div className={styles.registrationPage}>
@@ -64,6 +66,7 @@ const RegistrationPage = () => {
               label="Confirm Password"
               type="password"
               placeholder="Confirm Password"
+              error={errors.confirmPassword?.message}
               {...register("confirmPassword")}
             />
             <div className={styles.checkboxDual}>
