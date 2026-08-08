@@ -2,9 +2,9 @@ import React from 'react'
 import HeaderText from '../../features/Auth/components/HeaderText/HeaderText'
 import Paragraphtext from '../../features/Auth/components/ParagraphText/Paragraphtext'
 import styles from './Registration.module.css';
-import { Input } from '../../components/input/Input';
 import DualHeading from '../../components/Dual_Heading/DualHeading';
 import Buttons from '../../components/Button/Buttons';
+import { Input } from '../../components/input/Input';
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from '../../schemas/authSchemas';
 import { useDispatch } from 'react-redux'
 import { create } from '../../features/Auth/authSlice';
+import axios from 'axios';
 
 const RegistrationPage = () => {
 
@@ -25,8 +26,19 @@ const RegistrationPage = () => {
     resolver: zodResolver(registerSchema)
   });
 
-  const formSubmit = (data) => {
-       dispatch(create(data))
+  const formSubmit = async (data) => {
+  
+       try {
+
+          const res = await axios.post(
+              "http://backend.test/api/register",
+               data
+          );
+
+        
+       } catch (error) {
+           console.log(error.response?.data?.message || "Something went wrong");
+       }
   }
 
   return (

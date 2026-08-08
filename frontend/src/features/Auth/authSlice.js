@@ -1,4 +1,5 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
+import axios from 'axios'; 
 
 
 const authSlice = createSlice({
@@ -7,9 +8,7 @@ const authSlice = createSlice({
         query: ''
     },
     reducers:{
-        create(state,action){
-            console.log(action.payload)
-        }
+      
     }
 })
 
