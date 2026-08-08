@@ -35,9 +35,11 @@ const RegistrationPage = () => {
                data
           );
 
+          console.log(res.data)
+
         
        } catch (error) {
-           console.log(error.response?.data?.message || "Something went wrong");
+           console.log(error.response?.data || "Something went wrong");
        }
   }
 
