@@ -39,7 +39,10 @@ const RegistrationPage = () => {
 
         
        } catch (error) {
-           console.log(error.response?.data || "Something went wrong");
+           console.log(error.response?.data);
+           if(error.response?.status === 422){
+              console.log(error.response.data.errors);
+           }
        }
   }
 

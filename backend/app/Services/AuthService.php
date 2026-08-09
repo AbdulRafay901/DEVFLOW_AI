@@ -2,12 +2,25 @@
 
 namespace App\Services;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class AuthService
 {
-    /**
-     * Create a new class instance.
-     */
+    
     public function register($data){
-       return $data;
+        $user = User::create([
+            'name' => $data['fullName'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password'])
+        ]);
+
+        return response()->json([
+             'success' => true,
+             'message' => 'User registered successfully',
+             'data' => [
+                  'user' => $user
+             ]
+        ]);
     }
 }
