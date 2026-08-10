@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 const DualHeading = ({text, className, element}) => {
   return (
-    <p className={className}>{text} {element}</p>
+    <p className='flex text-xs mt-6 gap-[3px]'>{text } {element}</p>
   )
 }
 

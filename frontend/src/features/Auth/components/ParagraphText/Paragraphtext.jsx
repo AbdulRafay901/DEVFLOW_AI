@@ -1,9 +1,9 @@
 import React from 'react'
 import './Paragraphtext.module.css'
 
-const Paragraphtext = ({text}) => {
+const Paragraphtext = ({text, className}) => {
   return (
-     <p>
+     <p className={className}>
         {text}
      </p>
   )
