@@ -13,10 +13,12 @@ import { registerSchema } from '../../schemas/authSchemas';
 import { useDispatch } from 'react-redux'
 import { create } from '../../features/Auth/authSlice';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationPage = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -35,7 +37,13 @@ const RegistrationPage = () => {
         data
       );
 
-      console.log(res.data)
+      console.log(res.data.data.user.email)
+
+      navigate('/verifyEmail',{
+          state: {
+              email: res.data.data.user.email
+          }
+      })
 
 
     } catch (error) {

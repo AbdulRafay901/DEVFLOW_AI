@@ -4,9 +4,15 @@ import envolveImg from '../../assets/envolve.png';
 import HeaderText from '../../features/Auth/components/HeaderText/HeaderText';
 import Paragraphtext from '../../features/Auth/components/ParagraphText/Paragraphtext';
 import DualHeading from '../../components/Dual_Heading/DualHeading';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 
 const verfiyEmail = () => {
+
+  const location = useLocation();
+
+  const email = location.state?.email;
+
   return (
     <div className={styles.registrationPage}>
       <div className={styles.content}>
@@ -14,7 +20,7 @@ const verfiyEmail = () => {
            <HeaderText text="Verify your email" className='text-[20px] font-[600]'></HeaderText>
            <div className='flex flex-col mt-[15px]'>
                  <Paragraphtext text="We've sent a verification link to" className='text-[13px]'></Paragraphtext>
-                 <Paragraphtext text='abdulrafay700000.com' className=' text-xs text-black'></Paragraphtext>
+                 <Paragraphtext text={email} className=' text-xs text-black'></Paragraphtext>
            </div>
            <DualHeading 
                 text="Didn't receive the email? "

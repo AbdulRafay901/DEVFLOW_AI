@@ -15,16 +15,10 @@ class AuthService
             'password' => Hash::make($data['password'])
         ]);
 
+        $user->sendEmailVerificationNotification();
 
+        return $user;
 
-        return response()->json([
-             'success' => true,
-             'message' => 'User registered successfully',
-             'data' => [
-                  'user' => $user
-             ]
-        ]);
+}
 
-
-    }
 }
