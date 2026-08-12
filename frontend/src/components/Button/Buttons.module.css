@@ -3,6 +3,7 @@ button{
     color: white;
     border: none;
     border-radius: 7px;
+    font-size: 13px;
     cursor: pointer;
     width: var(--btn-width);
     height: var(--btn-height);

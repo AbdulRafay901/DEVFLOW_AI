@@ -27,34 +27,34 @@ const RegistrationPage = () => {
   });
 
   const formSubmit = async (data) => {
-  
-       try {
 
-          const res = await axios.post(
-              "http://backend.test/api/register",
-               data
-          );
+    try {
 
-          console.log(res.data)
+      const res = await axios.post(
+        "http://backend.test/api/register",
+        data
+      );
 
-        
-       } catch (error) {
-           console.log(error.response?.data);
-           if(error.response?.status === 422){
-              console.log(error.response.data.errors);
-           }
-       }
+      console.log(res.data)
+
+
+    } catch (error) {
+      console.log(error.response?.data);
+      if (error.response?.status === 422) {
+        console.log(error.response.data.errors);
+      }
+    }
   }
 
   return (
     <div className={styles.registrationPage}>
       <div className={styles.content}>
-        <div className={styles.text}>
-          <HeaderText text='Create your account' />
-          <Paragraphtext text='Start your 14 day free trial' />
+        <div className='mb-[20px]'>
+          <HeaderText text='Create your account' className='m-0 font-[600] text-[20px]' />
+          <Paragraphtext text='Start your 14 day free trial' className='text-[12px]' />
         </div>
         <form onSubmit={handleSubmit(formSubmit)}>
-          <div className={styles.inputs}>
+          <div className='flex flex-col gap-[10px]'>
             <Input
               label="Full name"
               type="text"
@@ -92,15 +92,15 @@ const RegistrationPage = () => {
                 error={errors.checkbox?.message}
                 {...register("checkbox")}
               />
-              <DualHeading className={styles.DualHeading} text='I agree to the' dualText='Terms & Conditions' element={<span>Terms & Conditions</span>} />
+              <DualHeading className='flex text-xs gap-[3px]' text='I agree to the' dualText='Terms & Conditions' element={<span>Terms & Conditions</span>} />
             </div>
           </div>
-          <Buttons type='submit' text='Create account' width='100%' height='35px' marginTop='15px' />
+          <Buttons type='submit' text='Create account' width='100%' height='35px' marginTop='15px'/>
         </form>
 
         <DualHeading
           text='Already have an account?'
-          element={<Link style={{ textDecoration: 'none', color: 'var(--primary-color)' }} to='/login'>Login</Link>} className={styles.DualHeading2} />
+          element={<Link style={{ textDecoration: 'none', color: 'var(--primary-color)' }} to='/login'>Login</Link>} className='flex justify-center text-xs mt-6 gap-[3px]' />
       </div>
     </div>
   )

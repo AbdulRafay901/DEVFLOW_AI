@@ -8,7 +8,7 @@ import styles from './inputs.module.css'
          <input
               {...props}
          ></input>
-         {error && <p>{error}</p>}
+         {error && <p className='text-xs mt-[3px]'>{error}</p>}
     </div>
   )
 }

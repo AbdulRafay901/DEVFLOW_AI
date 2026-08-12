@@ -21,7 +21,7 @@ const verfiyEmail = () => {
                 element={
                    <Link style={{ textDecoration: 'none', color: 'var(--primary-color)' }} to='/resendCode'> Resend</Link>
                 } 
-                className={styles.DualHeading2}>          
+                className='flex text-xs mt-6 gap-[3px]'>          
            </DualHeading>
            <Link className='text-xs mt-[20px]'>Back to login</Link>
       </div>
