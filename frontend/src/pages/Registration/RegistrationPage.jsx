@@ -28,31 +28,31 @@ const RegistrationPage = () => {
     resolver: zodResolver(registerSchema)
   });
 
-  const formSubmit = async (data) => {
+    const formSubmit = async (data) => {
 
-    try {
+      try {
 
-      const res = await axios.post(
-        "http://backend.test/api/register",
-        data
-      );
+        const res = await axios.post(
+          "http://backend.test/api/register",
+          data
+        );
 
-      console.log(res.data.data.user.email)
+        console.log(res.data.data.user.email)
 
-      navigate('/verifyEmail',{
-          state: {
-              email: res.data.data.user.email
-          }
-      })
+        navigate('/verifyEmail',{
+            state: {
+                email: res.data.data.user.email
+            }
+        })
 
 
-    } catch (error) {
-      console.log(error.response?.data);
-      if (error.response?.status === 422) {
-        console.log(error.response.data.errors);
+      } catch (error) {
+        console.log(error.response?.data);
+        if (error.response?.status === 422) {
+          console.log(error.response.data.errors);
+        }
       }
     }
-  }
 
   return (
     <div className={styles.registrationPage}>
