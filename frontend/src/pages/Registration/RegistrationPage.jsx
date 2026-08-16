@@ -28,6 +28,8 @@ const RegistrationPage = () => {
     resolver: zodResolver(registerSchema)
   });
 
+  const [email, setemail] = useState(errors.email?.message)  
+
     const formSubmit = async (data) => {
 
       try {
@@ -47,9 +49,8 @@ const RegistrationPage = () => {
 
 
       } catch (error) {
-        console.log(error.response?.data);
         if (error.response?.status === 422) {
-          console.log(error.response.data.errors);
+            setemail(error.response.data.errors.email)
         }
       }
     }
@@ -75,7 +76,7 @@ const RegistrationPage = () => {
               label="Email address"
               type="email"
               placeholder="Enter Email"
-              error={errors.email?.message}
+              error={email}
               {...register("email")}
             />
 
