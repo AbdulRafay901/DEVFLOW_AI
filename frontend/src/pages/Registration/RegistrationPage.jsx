@@ -37,7 +37,7 @@ const RegistrationPage = () => {
           data
         );
 
-        console.log(res.data.data.user.email)
+        localStorage.setItem("token", res.data.data.token);
 
         navigate('/verifyEmail',{
             state: {

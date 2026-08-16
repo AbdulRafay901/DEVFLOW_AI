@@ -22,4 +22,20 @@ class EmailVerificationController extends Controller
     );
 }
 
+    public function resendCode(Request $request){
+        $response = $this->inject->resendCode($request->user());
+
+        if($response === 'already_verified'){
+            return response()->json([
+                "status" => false,
+                "message" => $response
+            ]);
+        }
+
+        return response()->json([
+            "status" => true,
+            "message" => $response
+        ]);
+    }
+
 }

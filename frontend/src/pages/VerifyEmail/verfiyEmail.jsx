@@ -4,15 +4,48 @@ import envolveImg from '../../assets/envolve.png';
 import HeaderText from '../../features/Auth/components/HeaderText/HeaderText';
 import Paragraphtext from '../../features/Auth/components/ParagraphText/Paragraphtext';
 import DualHeading from '../../components/Dual_Heading/DualHeading';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 
 const verfiyEmail = () => {
+
+  const navigate = useNavigate();
 
   const location = useLocation();
 
   const email = location.state?.email;
 
+  // useEffect(() => {
+  //   if (!email) {
+  //      navigate('/', { replace: true });
+  //   }
+  // }, [email, navigate]);
+
+  const token = localStorage.getItem("token");
+
+  const resendCode = async () => {
+      try {
+
+        const res = await axios.post(
+          "http://backend.test/api/resendCode",
+          {},{
+             headers: {
+                 Authorization: `Bearer ${token}`
+             }
+          }
+          
+        )
+
+        console.log(res.data);
+        
+      } catch (error) {
+         console.log(error?.response)
+      }
+  }
+  
+  
   return (
     <div className={styles.registrationPage}>
       <div className={styles.content}>
@@ -25,7 +58,12 @@ const verfiyEmail = () => {
            <DualHeading 
                 text="Didn't receive the email? "
                 element={
-                   <Link style={{ textDecoration: 'none', color: 'var(--primary-color)' }} to='/resendCode'> Resend</Link>
+                  <span
+                    style={{ textDecoration: 'none', color: 'var(--primary-color)' }}
+                    onClick={resendCode}
+                    > Resend
+
+                  </span>
                 } 
                 className='flex text-xs mt-6 gap-[3px]'>          
            </DualHeading>

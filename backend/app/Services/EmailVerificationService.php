@@ -22,4 +22,16 @@ class EmailVerificationService
         $user->markEmailAsVerified();
     }
 }
+
+    public function resendCode(User $user)
+{
+     if($user->hasVerifiedEmail()) {
+         return 'already_verified';
+     }
+
+     $user->sendEmailVerificationNotification();
+     
+     return 'sent';
+}
+
 }
