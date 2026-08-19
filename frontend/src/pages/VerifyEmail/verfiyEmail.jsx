@@ -17,11 +17,11 @@ const verfiyEmail = () => {
 
   const email = location.state?.email;
 
-  // useEffect(() => {
-  //   if (!email) {
-  //      navigate('/', { replace: true });
-  //   }
-  // }, [email, navigate]);
+  useEffect(() => {
+    if (!email) {
+       navigate('/', { replace: true });
+    }
+  }, [email, navigate]);
 
   const token = localStorage.getItem("token");
 
