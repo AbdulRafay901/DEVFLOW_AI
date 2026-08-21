@@ -13,6 +13,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from '../../schemas/loginSchemas';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../../features/Auth/components/Icon';
+import Image from '../../components/Image';
+import Google from '../../assets/google.png';
+import Github from '../../assets/github.png';
 
 
 
@@ -72,9 +75,15 @@ const LoginPage = () => {
           </div>
           <Buttons type='submit' text='Login' width='100%' height='35px' marginTop='15px' />
         </form>
-        <Paragraphtext text='or continue with' className='text-[12.5px] mt-[22px] mb-[18px] text-[var(--text-muted)]'></Paragraphtext>
-        <div className="">
-              <Icon />
+        <div className="mt-[27px] mb-[27px] flex flex-col gap-[13px]">
+        <Paragraphtext
+            text='or continue with'
+            className='text-[12.5px] text-[var(--text-muted)]'>
+        </Paragraphtext>
+        <div className="flex flex justify-center gap-[10px]">
+              <Image src={Google}/>
+              <Image src={Github} />
+        </div>
         </div>
         <DualHeading
           text="Dont't have an account?"
