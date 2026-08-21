@@ -99,7 +99,7 @@ const RegistrationPage = () => {
                 error={errors.checkbox?.message}
                 {...register("checkbox")}
               />
-              <DualHeading className='flex text-xs gap-[3px]' text='I agree to the' dualText='Terms & Conditions' element={<span>Terms & Conditions</span>} />
+              <DualHeading className='flex text-xs gap-[3px]' text='I agree to the' dualText='Terms & Conditions' element={<span className='text-[var(--primary-color)]'>Terms & Conditions</span>} />
             </div>
           </div>
           <Buttons type='submit' text='Create account' width='100%' height='35px' marginTop='15px'/>
