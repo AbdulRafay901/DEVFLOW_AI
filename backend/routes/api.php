@@ -15,6 +15,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/resendCode', [EmailVerificationController::class, 'resendCode'])
 ->middleware('auth:sanctum', 'throttle:6,1');
 
+Route::post('/login', [AuthController::class, 'login']);
+
+
 
 
 

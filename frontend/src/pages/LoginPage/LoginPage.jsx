@@ -11,8 +11,6 @@ import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from '../../schemas/loginSchemas';
-import { useNavigate } from 'react-router-dom';
-import Icon from '../../features/Auth/components/Icon';
 import Image from '../../components/Image';
 import Google from '../../assets/google.png';
 import Github from '../../assets/github.png';
@@ -31,8 +29,24 @@ const LoginPage = () => {
 
   const [email, setemail] = useState(errors.email?.message)
 
-  const formSubmit = async () => {
-    console.log("login")
+  const formSubmit = async (data) => {
+      try {
+
+        const res = await axios.post(
+        "http://backend.test/api/login", {
+         data
+        }, {
+          headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+         }
+      });
+
+      console.log(res.data);
+        
+      } catch (error) {
+        
+      }
   }
 
 

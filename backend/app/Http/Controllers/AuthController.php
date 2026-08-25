@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\registerRequest;
 use App\Services\AuthService;
+use App\Http\Requests\login;
 
 class AuthController extends Controller
 {
@@ -31,5 +32,9 @@ class AuthController extends Controller
                    'token' => $token
                ],
          ], 201);
+    }
+
+    public function login(login $request){
+       return "ok he";
     }
 }
