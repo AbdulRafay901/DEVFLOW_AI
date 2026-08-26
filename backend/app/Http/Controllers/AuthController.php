@@ -35,6 +35,21 @@ class AuthController extends Controller
     }
 
     public function login(login $request){
-       return "ok he";
+      $data = $this->authService->login($request->validated());
+
+      if(!$data){
+         return response()->json([
+             "status" => false,
+             "message" => "invalid credentials"
+         ]);
+      }
+
+      $token = $data->createToken('auth-token')->plainTextToken;
+
+      return response()->json([
+          "status" => true,
+          "user" => $data,
+          "token" => $token
+      ]);
     }
 }

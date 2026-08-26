@@ -33,19 +33,23 @@ const LoginPage = () => {
       try {
 
         const res = await axios.post(
-        "http://backend.test/api/login", {
-         data
-        }, {
-          headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-         }
-      });
+        "http://backend.test/api/login",
+        data, 
+         {
+            headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        }
+      );
 
-      console.log(res.data);
+      console.log(res.data)
+
+      
         
       } catch (error) {
-        
+         console.log(error.response);
+         console.log(error.response);
       }
   }
 

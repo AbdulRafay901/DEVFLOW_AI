@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthService
 {
@@ -20,6 +21,17 @@ class AuthService
 
         return $user;
 
-}
+    }
+
+    public function login(array $data){
+
+        $credentials = $data;
+
+        if(!Auth::attempt($credentials)){
+            return false;
+        }
+
+        return Auth::user();
+    }
 
 }
