@@ -25,6 +25,8 @@ Route::prefix('auth/github')->group(function () {
     Route::get('/callback', [SocialAuthController::class, 'callback']);
 });
 
+Route::post('/auth/oauth/exchange', [SocialAuthController::class, 'exchange']);
+
 // OAUTH -------------- End
 
 

@@ -8,6 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Services\Auth\SocialAuthService;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class SocialAuthController extends Controller
 {
@@ -41,5 +42,30 @@ class SocialAuthController extends Controller
     return redirect(
         config('app.frontend_url') . '/oauth/callback?code=' . $code
     );
+}
+
+    public function exchange(Request $request)
+{
+    $request->validate([
+        'code' => ['required', 'string'],
+    ]);
+
+    $data = Cache::pull('oauth_login:' . $request->code);
+
+    if (!$data) {
+        return response()->json([
+            'message' => 'Invalid or expired OAuth code'
+        ], 401);
+    }
+
+    $user = User::findOrFail($data['user_id']);
+
+    $token = $user->createToken('auth-token')->plainTextToken;
+
+    return response()->json([
+        'message' => 'Login successful',
+        'token' => $token,
+        'user' => $user,
+    ]);
 }
 }
