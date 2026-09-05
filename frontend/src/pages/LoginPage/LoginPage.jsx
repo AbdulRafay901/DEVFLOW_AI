@@ -5,19 +5,23 @@ import styles from '../Registration/Registration.module.css';
 import DualHeading from '../../components/Dual_Heading/DualHeading';
 import Buttons from '../../components/Button/Buttons';
 import axios from 'axios';
+import Image from '../../components/Image';
+import Google from '../../assets/google.png';
+import Github from '../../assets/github.png';
 import { Input } from '../../components/input/Input';
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from '../../schemas/loginSchemas';
-import Image from '../../components/Image';
-import Google from '../../assets/google.png';
-import Github from '../../assets/github.png';
+import { useDispatch } from "react-redux";
+import { setCredentials } from '../../features/Auth/authSlice';
 
 
 
 const LoginPage = () => {
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -43,8 +47,14 @@ const LoginPage = () => {
         }
       );
 
-      console.log(res.data)
+      const { token, user } = response.data.data;
 
+      dispatch(
+          setCredentials({
+              token,
+              user,
+          })
+      );
       
         
       } catch (error) {

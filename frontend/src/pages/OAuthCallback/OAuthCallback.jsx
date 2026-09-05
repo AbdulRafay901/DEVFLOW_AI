@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../features/Auth/authSlice";
 import axios from "axios";
 
 const OAuthCallback = () => {
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const exchangeCode = async () => {
@@ -25,8 +29,12 @@ const OAuthCallback = () => {
 
                 const { token, user } = response.data;
 
-                localStorage.setItem("token", token);
-                localStorage.setItem("user", JSON.stringify(user));
+                dispatch(
+                    setCredentials({
+                        token,
+                        user
+                    })
+                );
 
                 navigate("/success");
                 
