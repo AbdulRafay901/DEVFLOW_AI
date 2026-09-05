@@ -28,7 +28,8 @@ const OAuthCallback = () => {
                 localStorage.setItem("token", token);
                 localStorage.setItem("user", JSON.stringify(user));
 
-                navigate("/");
+                navigate("/success");
+                
             } catch (error) {
                 console.error(error);
 

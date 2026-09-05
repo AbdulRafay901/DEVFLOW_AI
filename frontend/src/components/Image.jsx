@@ -4,7 +4,7 @@ const Image = ({src}) => {
 
   const handleGithubLogin = () => {
     window.location.href =
-        "http://backend.test/api/auth/github/redirect";
+        "http://backend.test/auth/github/redirect";
   };
 
   return (
