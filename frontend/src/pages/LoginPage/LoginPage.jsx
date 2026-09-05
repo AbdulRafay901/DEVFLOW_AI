@@ -100,7 +100,7 @@ const LoginPage = () => {
         </Paragraphtext>
         <div className="flex flex justify-center gap-[10px]">
               <Image src={Google}/>
-              <Image src={Github} />
+              <Image src={Github}/>
         </div>
         </div>
         <DualHeading

@@ -20,11 +20,6 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // OAUTH -------------- Start
 
-Route::prefix('auth/github')->group(function () {
-    Route::get('/redirect', [SocialAuthController::class, 'redirect']);
-    Route::get('/callback', [SocialAuthController::class, 'callback']);
-});
-
 Route::post('/auth/oauth/exchange', [SocialAuthController::class, 'exchange']);
 
 // OAUTH -------------- End
