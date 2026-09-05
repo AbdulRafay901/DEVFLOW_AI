@@ -11,7 +11,6 @@ import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from '../../schemas/authSchemas';
-import { create } from '../../features/Auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 
 const RegistrationPage = () => {
