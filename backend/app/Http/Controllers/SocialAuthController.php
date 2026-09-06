@@ -24,48 +24,73 @@ class SocialAuthController extends Controller
     }
 
     public function callback()
-{
-    $githubUser = Socialite::driver('github')->user();
+    {
+        $githubUser = Socialite::driver('github')->user();
 
-    $user = $this->socialAuthService->handleGithubUser($githubUser);
+        $user = $this->socialAuthService->handleGithubUser($githubUser);
 
-    $code = Str::random(64);
+        $code = Str::random(64);
 
-    Cache::put(
-        'oauth_login:' . $code,
-        [
-            'user_id' => $user->id,
-        ],
-        now()->addMinute()
-    );
+        Cache::put(
+            'oauth_login:' . $code,
+            [
+                'user_id' => $user->    id,
+            ],
+            now()->addMinute()
+        );
 
-    return redirect(
-        config('app.frontend_url') . '/oauth/callback?code=' . $code
-    );
-}
-
-    public function exchange(Request $request)
-{
-    $request->validate([
-        'code' => ['required', 'string'],
-    ]);
-
-    $data = Cache::pull('oauth_login:' . $request->code);
-
-    if (!$data) {
-        return response()->json([
-            'message' => 'Invalid or expired OAuth code'
-        ], 401);
+        return redirect(
+            config('app.frontend_url') . '/oauth/callback?code=' . $code
+        );
     }
 
-    $user = User::findOrFail($data['user_id']);
 
-    $token = $user->createToken('auth-token')->plainTextToken;
+    // OAuth Google --------- Start
 
-    return response()->json([
-        'message' => 'Login successful',
-        'token' => $token,
-        'user' => $user,
-    ]);
-}
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleCallback()
+    {
+        $googleUser = Socialite::driver('google')->user();
+
+        $user = $this->socialAuthService->handleGoogleUser($googleUser);
+
+        $code = Str::random(64);
+
+        Cache::put('oauth_login:' . $code,['user_id' => $user->id,],now()->addMinute());
+
+        return redirect(
+            config('app.frontend_url') . '/oauth/callback?code=' . $code
+        );
+    }
+
+    // OAuth Google --------- End
+
+    public function exchange(Request $request)
+    {
+        $request->validate([
+           'code' => ['required', 'string'],
+        ]);
+
+        $data = Cache::pull('oauth_login:' . $request->code);
+
+        if (!$data) {
+           return response()->json([
+              'message' => 'Invalid or expired OAuth code'
+           ], 401);
+        }
+
+        $user = User::findOrFail($data['user_id']);
+
+        $token = $user->createToken('auth-token')->plainTextToken;
+
+        return response()->json([
+           'message' => 'Login successful',
+           'token' => $token,
+           'user' => $user,
+        ]);
+    }
 }
