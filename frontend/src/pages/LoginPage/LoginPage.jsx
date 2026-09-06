@@ -109,8 +109,8 @@ const LoginPage = () => {
             className='text-[12.5px] text-[var(--text-muted)]'>
         </Paragraphtext>
         <div className="flex flex justify-center gap-[10px]">
-              <Image src={Google}/>
-              <Image src={Github}/>
+              <Image src={Google} name="google"/>
+              <Image src={Github} name="github"/>
         </div>
         </div>
         <DualHeading

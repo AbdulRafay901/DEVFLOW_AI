@@ -44,7 +44,6 @@ class SocialAuthController extends Controller
         );
     }
 
-
     // OAuth Google --------- Start
 
     public function googleRedirect()

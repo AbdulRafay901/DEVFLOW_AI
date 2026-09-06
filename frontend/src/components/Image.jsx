@@ -1,10 +1,19 @@
 import React from 'react'
 
-const Image = ({src}) => {
+const Image = ({src,name}) => {
 
   const handleGithubLogin = () => {
-    window.location.href =
-        "http://backend.test/auth/github/redirect";
+      if(name === "github"){
+         window.location.href =
+         "http://backend.test/auth/github/redirect";
+         console.log(name)
+      }
+
+      else{
+        window.location.href =
+         "http://127.0.0.1:8000/auth/google/redirect";
+         console.log(name)
+      }
   };
 
   return (
