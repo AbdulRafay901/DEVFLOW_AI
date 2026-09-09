@@ -106,19 +106,22 @@ const LoginPage = () => {
           </div>
           <Buttons type='submit' text='Login' width='100%' height='35px' marginTop='15px' />
         </form>
+
         <div className="mt-[27px] mb-[27px] flex flex-col gap-[13px]">
-        <Paragraphtext
-            text='or continue with'
-            className='text-[12.5px] text-[var(--text-muted)]'>
-        </Paragraphtext>
-        <div className="flex flex justify-center gap-[10px]">
-              <Image src={Google} name="google"/>
-              <Image src={Github} name="github"/>
+               <Paragraphtext
+                    text='or continue with'
+                    className='text-[12.5px] text-[var(--text-muted)]'>
+               </Paragraphtext>
+               <div className="flex flex justify-center gap-[10px]">
+                     <Image src={Google} name="google"/>
+                     <Image src={Github} name="github"/>
+               </div>
         </div>
-        </div>
+
         <DualHeading
           text="Dont't have an account?"
-          element={<Link style={{ textDecoration: 'none', color: 'var(--primary-color)' }} to='/'>Sign up</Link>} className='flex justify-center text-xs gap-[3px]' />
+          element=
+          {<Link style={{ textDecoration: 'none', color: 'var(--primary-color)' }} to='/'>Sign up</Link>} className='flex justify-center text-xs gap-[3px]' />
       </div>
     </div>
   )
