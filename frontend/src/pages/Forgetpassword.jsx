@@ -1,16 +1,35 @@
 import React from 'react'
-
+import { useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { forgetSchema } from '../schemas/forgetSchemas';
 import { Input } from '../components/input/Input';
 import { useState } from 'react';
 import HeaderText from '../features/Auth/components/HeaderText/HeaderText'
 import Paragraphtext from '../features/Auth/components/ParagraphText/Paragraphtext'
 import styles from './Registration/Registration.module.css';
 import Buttons from '../components/Button/Buttons';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
 const Forgetpassword = () => {
+
+  const navigate = useNavigate();
+
+
+  const {
+      register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm({
+        resolver: zodResolver(forgetSchema)
+  })
+
+  const [email, setemail] = useState(errors.email?.message)
+
+  const formSubmit = async (data) => {
+     console.log(data)
+  }
 
 
   return (
