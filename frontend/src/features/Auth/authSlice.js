@@ -19,7 +19,10 @@ const authSlice = createSlice({
             state.isAuthenticated = true;
 
             localStorage.setItem("token", token);
-            localStorage.setItem("user", JSON.stringify(user));
+
+            if(user){
+                localStorage.setItem("user", JSON.stringify(user));
+            }
         },
 
         loadCredentials: (state) => {

@@ -23,15 +23,16 @@ class AuthService
 
     }
 
-    public function login(array $data){
+    public function login(array $data)
+{
+   
+    $credentials = $data;
 
-        $credentials = $data;
-
-        if(!Auth::attempt($credentials)){
-            return false;
-        }
-
-        return Auth::user();
+    if (!Auth::attempt($credentials)) {
+        return false;
     }
+
+    return Auth::user();
+}
 
 }

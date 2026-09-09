@@ -34,6 +34,7 @@ const LoginPage = () => {
   const [email, setemail] = useState(errors.email?.message)
 
   const formSubmit = async (data) => {
+     console.log(data)
       try {
 
         const res = await axios.post(
@@ -47,7 +48,10 @@ const LoginPage = () => {
         }
       );
 
-      const { token, user } = response.data.data;
+
+      console.log(res.data)
+
+      const { token, user } = res.data;
 
       dispatch(
           setCredentials({
@@ -58,7 +62,6 @@ const LoginPage = () => {
       
         
       } catch (error) {
-         console.log(error.response);
          console.log(error.response);
       }
   }
@@ -115,7 +118,7 @@ const LoginPage = () => {
         </div>
         <DualHeading
           text="Dont't have an account?"
-          element={<Link style={{ textDecoration: 'none', color: 'var(--primary-color)' }} to='/login'>Sign up</Link>} className='flex justify-center text-xs gap-[3px]' />
+          element={<Link style={{ textDecoration: 'none', color: 'var(--primary-color)' }} to='/'>Sign up</Link>} className='flex justify-center text-xs gap-[3px]' />
       </div>
     </div>
   )
