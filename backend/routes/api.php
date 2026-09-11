@@ -18,6 +18,8 @@ Route::post('/resendCode', [EmailVerificationController::class, 'resendCode'])
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/forgetPassword', [AuthController::class, 'forgetPassword']);
+
 // OAUTH -------------- Start
 
 Route::post('/auth/oauth/exchange', [SocialAuthController::class, 'exchange']);

@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+
 
 class AuthService
 {
@@ -24,15 +26,23 @@ class AuthService
     }
 
     public function login(array $data)
-{
-   
-    $credentials = $data;
+    {
+        $credentials = $data;
 
-    if (!Auth::attempt($credentials)) {
-        return false;
+        if (!Auth::attempt($credentials)) {
+            return false;
+        }
+
+        return Auth::user();
     }
 
-    return Auth::user();
-}
+    public function forgetPassword(array $data){
+         $status = Password::sendResetLink([
+            'email' => $data['email']
+         ]);
+
+         return $status;
+
+    }
 
 }

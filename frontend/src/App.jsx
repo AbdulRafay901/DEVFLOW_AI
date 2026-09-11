@@ -8,6 +8,7 @@ import VerfiyEmail from './pages/VerifyEmail/verfiyEmail'
 import LoginPage from './pages/LoginPage/LoginPage'
 import OAuthCallback from './pages/OAuthCallback/OAuthCallback'
 import Forgetpassword from './pages/Forgetpassword'
+import ResetPassword from './pages/ResetPassword';
 
 
 
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/verifyEmail" element={<VerfiyEmail/>}></Route>
             <Route path="/oauth/callback" element={<OAuthCallback />}/>
             <Route path='/forgetPassword' element={<Forgetpassword/>}/>
+            <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
     </div>
   )

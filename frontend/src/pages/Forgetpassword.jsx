@@ -4,11 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { forgetSchema } from '../schemas/forgetSchemas';
 import { Input } from '../components/input/Input';
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import HeaderText from '../features/Auth/components/HeaderText/HeaderText'
 import Paragraphtext from '../features/Auth/components/ParagraphText/Paragraphtext'
 import styles from './Registration/Registration.module.css';
 import Buttons from '../components/Button/Buttons';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
@@ -28,9 +29,28 @@ const Forgetpassword = () => {
   const [email, setemail] = useState(errors.email?.message)
 
   const formSubmit = async (data) => {
-     console.log(data)
-  }
 
+    console.log(data)
+      try {
+
+        const res = await axios.post(
+            "http://backend.test/api/forgetPassword",
+            data,
+            {
+              headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+              }
+            }
+        );
+
+        console.log(res.data)
+        
+      } catch (error) {
+         console.log(error.response)
+      }
+  }
+  
 
   return (
     <div className={styles.registrationPage}>

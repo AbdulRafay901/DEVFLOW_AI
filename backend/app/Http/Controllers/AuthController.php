@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ForgetPasswordRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\registerRequest;
 use App\Services\AuthService;
 use App\Http\Requests\login;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -51,5 +53,22 @@ class AuthController extends Controller
           "user" => $data,
           "token" => $token
       ]);
+    }
+
+    public function forgetPassword(ForgetPasswordRequest $request){
+        $response = $this->authService->forgetPassword($request->validated());
+
+        if($response === Password::INVALID_USER){
+           return response()->json([
+                'status' => false,
+                'messages' => "user doesn't exist"
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Reset link send'
+        ]);
+        
     }
 }
