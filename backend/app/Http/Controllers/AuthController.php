@@ -65,10 +65,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Reset link send'
-        ]);
+        
         
     }
 }
