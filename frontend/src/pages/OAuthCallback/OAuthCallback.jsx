@@ -21,7 +21,7 @@ const OAuthCallback = () => {
                 }
 
                 const response = await axios.post(
-                    "http://backend.test/api/auth/oauth/exchange",
+                    "http://127.0.0.1:8000/api/auth/oauth/exchange",
                     {
                         code,
                     }

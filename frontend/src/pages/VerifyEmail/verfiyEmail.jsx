@@ -29,7 +29,7 @@ const verfiyEmail = () => {
       try {
 
         const res = await axios.post(
-          "http://backend.test/api/resendCode",
+          "http://127.0.0.1:8000/api/resendCode",
           {},{
              headers: {
                  Authorization: `Bearer ${token}`

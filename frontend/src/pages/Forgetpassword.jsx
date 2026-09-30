@@ -34,7 +34,7 @@ const Forgetpassword = () => {
       try {
 
         const res = await axios.post(
-            "http://backend.test/api/forgetPassword",
+            "http://127.0.0.1:8000/api/forgetPassword",
             data,
             {
               headers: {
