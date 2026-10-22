@@ -9,10 +9,16 @@ import Paragraphtext from '../features/Auth/components/ParagraphText/Paragraphte
 import styles from './Registration/Registration.module.css';
 import Buttons from '../components/Button/Buttons';
 import { changeSchemas } from '../schemas/changeSchemas';
+import { useSearchParams } from 'react-router-dom';
 
 
 
 const Forgetpassword = () => {
+
+  const [searchParams] = useSearchParams();
+
+  const token = searchParams.get("token")
+  const email = searchParams.get("email")
 
 
   const {
@@ -25,9 +31,26 @@ const Forgetpassword = () => {
 
 
   const formSubmit = async (data) => {
+      try {
 
-    console.log(data)
-     
+        const res = await axios.post("http://127.0.0.1:8000/api/changePassword",
+             token,
+             email,
+             data,
+             {
+                 headers: {
+                   "Accept": "application/json",
+                   "Content-Type": "application/json"
+                 }
+             }
+        )
+
+        console.log(res.data)
+      
+          
+      }catch (error) {
+          
+      }
   }
   
 
@@ -47,18 +70,18 @@ const Forgetpassword = () => {
                          label="New password"
                          type="password"
                          placeholder=""
-                         error={errors.passsword?.message}
+                         error={errors.password?.message}
                          {...register("password")}
                      />
                      <Input
                          label="Confirm new password"
-                         type="confirmPassword"
+                         type="password"
                          placeholder=""
-                         error={errors.passsword?.message}
-                         {...register("password")}
+                         error={errors.confirmPassword?.message}
+                         {...register("confirmPassword")}
                      />
                    </div>
-                   <Buttons type='submit' text='Reset Password' width='100%' height='40px' marginTop='15px' />
+                   <Buttons type='submit' text='Submit' width='100%' height='40px' marginTop='15px' />
                    
             </form>
         </div>

@@ -20,11 +20,15 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/forgetPassword', [AuthController::class, 'forgetPassword']);
 
+Route::post('changePassword', [AuthController::class, 'changePassword']);
+
 // OAUTH -------------- Start
 
 Route::post('/auth/oauth/exchange', [SocialAuthController::class, 'exchange']);
 
 // OAUTH -------------- End
+
+
 
 
 

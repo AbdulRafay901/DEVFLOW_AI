@@ -65,7 +65,11 @@ class AuthController extends Controller
             ]);
         }
 
-        
-        
+    }
+
+    public function changePassword(){
+        return response()->json([
+            "status" => "True"
+        ]);
     }
 }
