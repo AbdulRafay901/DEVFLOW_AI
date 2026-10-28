@@ -8,6 +8,7 @@ use App\Http\Requests\registerRequest;
 use App\Services\AuthService;
 use App\Http\Requests\login;
 use Illuminate\Support\Facades\Password;
+use App\Http\Requests\ResetPasswordRequest;
 
 class AuthController extends Controller
 {
@@ -67,9 +68,11 @@ class AuthController extends Controller
 
     }
 
-    public function changePassword(){
+    public function changePassword(ResetPasswordRequest $request){
+        $request = $this->authService->changePassword($request->validated());
+
         return response()->json([
-            "status" => "True"
+            'status' => $request,
         ]);
     }
 }

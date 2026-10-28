@@ -34,9 +34,12 @@ const Forgetpassword = () => {
       try {
 
         const res = await axios.post("http://127.0.0.1:8000/api/changePassword",
-             token,
-             email,
-             data,
+             {
+                token: token,
+                email: email,
+                password: data.password,
+                password_confirmation: data.confirmPassword,
+             },
              {
                  headers: {
                    "Accept": "application/json",
@@ -49,7 +52,7 @@ const Forgetpassword = () => {
       
           
       }catch (error) {
-          
+          console.log(error.response)
       }
   }
   

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Password;
 
 
 class AuthService
-{
+{       
     
     public function register(array $data){
         $user = User::create([
@@ -43,6 +43,18 @@ class AuthService
 
          return $status;
 
+    }
+
+    public function changePassword(array $data){
+        $status = Password::reset(
+           $data,
+           function ($user, $password) {
+               $user->password = Hash::make($password);
+               $user->save();
+           }
+       );
+
+       return $status;
     }
 
 }
